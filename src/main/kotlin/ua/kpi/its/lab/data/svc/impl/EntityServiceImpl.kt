@@ -1,47 +1,25 @@
 package ua.kpi.its.lab.data.svc.impl
 
 import org.springframework.stereotype.Service
-import ua.kpi.its.lab.data.entity.Journal
+import ua.kpi.its.lab.data.entity.Magazine
 import ua.kpi.its.lab.data.entity.ScientificArticle
-import ua.kpi.its.lab.data.repo.JournalRepository
+import ua.kpi.its.lab.data.repo.MagazineRepository
 import ua.kpi.its.lab.data.repo.ScientificArticleRepository
-import ua.kpi.its.lab.data.svc.EntityService
+import ua.kpi.its.lab.data.svc.MagazineService
+import ua.kpi.its.lab.data.svc.ScientificArticleService
 
 @Service
-class EntityServiceImpl(
-    private val journalRepository: JournalRepository,
-    private val scientificArticleRepository: ScientificArticleRepository
-) : EntityService {
+class MagazineServiceImpl(private val repo: MagazineRepository) : MagazineService {
+    override fun create(magazine: Magazine) = repo.save(magazine)
+    override fun retrieve(id: Long) = repo.findById(id).orElse(null)
+    override fun update(magazine: Magazine) = repo.save(magazine)
+    override fun delete(id: Long) = repo.deleteById(id)
+}
 
-    override fun createJournal(journal: Journal): Journal {
-        return journalRepository.save(journal)
-    }
-
-    override fun getJournalById(id: Long): Journal? {
-        return journalRepository.findById(id).orElse(null)
-    }
-
-    override fun updateJournal(journal: Journal): Journal {
-        return journalRepository.save(journal)
-    }
-
-    override fun deleteJournal(id: Long) {
-        journalRepository.deleteById(id)
-    }
-
-    override fun createScientificArticle(article: ScientificArticle): ScientificArticle {
-        return scientificArticleRepository.save(article)
-    }
-
-    override fun getScientificArticleById(id: Long): ScientificArticle? {
-        return scientificArticleRepository.findById(id).orElse(null)
-    }
-
-    override fun updateScientificArticle(article: ScientificArticle): ScientificArticle {
-        return scientificArticleRepository.save(article)
-    }
-
-    override fun deleteScientificArticle(id: Long) {
-        scientificArticleRepository.deleteById(id)
-    }
+@Service
+class ScientificArticleServiceImpl(private val repo: ScientificArticleRepository) : ScientificArticleService {
+    override fun create(scientificArticle: ScientificArticle) = repo.save(scientificArticle)
+    override fun retrieve(id: Long) = repo.findById(id).orElse(null)
+    override fun update(scientificArticle: ScientificArticle) = repo.save(scientificArticle)
+    override fun delete(id: Long) = repo.deleteById(id)
 }

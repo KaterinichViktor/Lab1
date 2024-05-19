@@ -1,18 +1,18 @@
 package ua.kpi.its.lab.data.svc
 
-import ua.kpi.its.lab.data.entity.Journal
+import ua.kpi.its.lab.data.entity.Magazine
 import ua.kpi.its.lab.data.entity.ScientificArticle
 
-interface EntityService {
-    // CRUD операції для сутності Journal
-    fun createJournal(journal: Journal): Journal
-    fun getJournalById(id: Long): Journal?
-    fun updateJournal(journal: Journal): Journal
-    fun deleteJournal(id: Long)
+interface MagazineService {
+    fun create(magazine: Magazine): Magazine
+    fun retrieve(id: Long): Magazine?
+    fun update(magazine: Magazine): Magazine
+    fun delete(id: Long)
+}
 
-    // CRUD операції для сутності ScientificArticle
-    fun createScientificArticle(article: ScientificArticle): ScientificArticle
-    fun getScientificArticleById(id: Long): ScientificArticle?
-    fun updateScientificArticle(article: ScientificArticle): ScientificArticle
-    fun deleteScientificArticle(id: Long)
+interface ScientificArticleService {
+    fun create(scientificArticle: ScientificArticle): ScientificArticle
+    fun retrieve(id: Long): ScientificArticle?
+    fun update(scientificArticle: ScientificArticle): ScientificArticle
+    fun delete(id: Long)
 }
